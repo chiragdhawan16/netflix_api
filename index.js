@@ -21,6 +21,7 @@ const connectDB=async()=>{
 
 connectDB();
 
+app.use("/api/users", userRoute);
 
 app.listen(PORT, () => {
     console.log("Backend server is running!");
