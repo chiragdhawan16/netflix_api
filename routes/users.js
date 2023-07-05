@@ -16,7 +16,7 @@ const UserSchema = new mongoose.Schema(
 const User=mongoose.model("User", UserSchema);
 // module.exports = mongoose.model("User", UserSchema);
 
-getallusers=async (req, res) => {
+const getallusers=async (req, res) => {
     try {
         const users=await User.find().sort({ _id: -1 })
         if(users)
@@ -40,3 +40,5 @@ getallusers=async (req, res) => {
 }
 
 router.get("/", getallusers);
+
+export default router;
