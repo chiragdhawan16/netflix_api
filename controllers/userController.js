@@ -1,17 +1,4 @@
-import mongoose from "mongoose";
-const UserSchema = new mongoose.Schema(
-    {
-      username: { type: String, required: true, unique: true },
-      email: { type: String, required: true, unique: true },
-      password: { type: String, required: true },
-      profilePic: { type: String, default: "" },
-      isAdmin: { type: Boolean, default: false },
-    },
-    { timestamps: true }
-  );
-  const User=mongoose.model("User", UserSchema);
-  // module.exports = mongoose.model("User", UserSchema);
-  
+  import User from "../models/User.js"
  export const getallusers=async (req, res) => {
       try {
           const users=await User.find().sort({ _id: -1 })
