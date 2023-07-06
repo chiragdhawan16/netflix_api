@@ -7,10 +7,12 @@ import movieRoute from "./routes/movies.js"
 import listRoute from "./routes/lists.js"
 import authRoute from "./routes/auth.js"
 
-dotenv.config();
-const app=express()
-app.use(express.json());
 
+const app=express()
+
+dotenv.config();
+app.use(cors())
+app.use(express.json());
 const PORT=process.env.PORT||8080
 
 const connectDB=async()=>{
