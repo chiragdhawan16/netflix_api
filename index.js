@@ -5,6 +5,7 @@ import mongoose from "mongoose"
 import userRoute from "./routes/users.js";
 import movieRoute from "./routes/movies.js"
 import listRoute from "./routes/lists.js"
+import authRoute from "./routes/auth.js"
 
 dotenv.config();
 const app=express()
@@ -24,9 +25,11 @@ const connectDB=async()=>{
 
 connectDB();
 
+app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
 app.use("/api/movies", movieRoute);
 app.use("/api/lists", listRoute);
+
 
 app.listen(PORT, () => {
     console.log("Backend server is running!");

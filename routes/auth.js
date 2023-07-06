@@ -1,9 +1,12 @@
 import express from "express"
-import {getallusers} from "../controllers/userController.js"
+import {loginController,registerController} from "../controllers/authController.js"
 var router =express.Router()
 
 
+//REGISTER
+router.post("/register", registerController);
 
-router.get("/", getallusers);
+//LOGIN
+router.post("/login", loginController);
 
 export default router;
