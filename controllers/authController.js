@@ -7,11 +7,17 @@ import jwt from"jsonwebtoken";
 
  export const registerController = async (req, res) => {
   try {
+
+   
   const data = req.body;
   const email = data.email;
   let password = data.password;
   const username = data.username;
+  
+    profilePic:"https://firebasestorage.googleapis.com/v0/b/netflix-f3af8.appspot.com/o/users%2Fno_image.png?alt=media&token=f8044609-d880-4171-b9fc-dc32e184a59c"
   //  validation
+
+  // return res.send("chirag")
   if (!email || !password || !username) {
     return res.send({message:'please enter email, password or username'})
     
@@ -19,9 +25,14 @@ import jwt from"jsonwebtoken";
   
 
   // find existing one
-  const existinguser = await User.findOne({ email });
+  let existinguser = await User.findOne({ email });
   if (existinguser) {
     return res.send({message:'Email already exist database!'})
+    
+  }
+   existinguser = await User.findOne({ username });
+  if (existinguser) {
+    return res.send({message:'User name already exist database!'})
     
   }
   
@@ -37,17 +48,19 @@ import jwt from"jsonwebtoken";
  
 
     const user = await newuser.save();
+    
     return res.status(200).send({
       success: true,
       message: "Register successfully",
       user
     });
   } catch (err) {
-    // res.status(500).json(err);
-      res.status(500).send({
+    
+    console.log(err)
+      res.status(200).send({
       success: false,
-      message: "Error in registeration",
-      err
+      message: "Error in registeration chirag",
+          
     });
   }
 };
